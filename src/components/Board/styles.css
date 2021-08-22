@@ -1,0 +1,121 @@
+.board {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+
+  width: 600px;
+  height: 600px;
+}
+
+.horizontal-line1,
+.horizontal-line2,
+.vertical-line1,
+.vertical-line2 {
+  position: absolute;
+  border-radius: 4px;
+
+  background-color: rgb(187, 3, 194);
+}
+
+.horizontal-line1,
+.horizontal-line2 {
+  left: -2.5%;
+  width: 105%;
+  height: 4px;
+}
+
+.horizontal-line1 {
+  top: 198px;
+}
+
+.horizontal-line2 {
+  top: 398px;
+}
+
+.vertical-line1,
+.vertical-line2 {
+  top: -2.5%;
+  width: 4px;
+  height: 105%;
+}
+
+.vertical-line1 {
+  left: 198px;
+}
+
+.vertical-line2 {
+  left: 398px;
+}
+
+.line1,
+.line2,
+.line3,
+.line4,
+.line5,
+.line6,
+.line7,
+.line8 {
+  position: absolute;
+
+  border-radius: 5px;
+  background-color: red;
+  z-index: 100;
+}
+
+.line1,
+.line2,
+.line3 {
+  left: 5%;
+  width: 90%;
+  height: 20px;
+}
+
+.line1 {
+  top: 90px;
+}
+
+.line2 {
+  top: 290px;
+}
+
+.line3 {
+  top: 490px;
+}
+
+.line4,
+.line5,
+.line6 {
+  top: 5%;
+  height: 90%;
+  width: 20px;
+}
+
+.line4 {
+  left: 90px;
+}
+
+.line5 {
+  left: 290px;
+}
+
+.line6 {
+  left: 490px;
+}
+
+.line7 {
+  top: 7%;
+  right: 5%;
+  height: 125%;
+  width: 20px;
+  transform: rotate(45deg);
+  transform-origin: top right;
+}
+
+.line8 {
+  top: 7%;
+  left: 5%;
+  height: 125%;
+  width: 20px;
+  transform: rotate(-45deg);
+  transform-origin: top left;
+}
