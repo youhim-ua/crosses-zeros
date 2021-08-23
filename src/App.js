@@ -21,20 +21,18 @@ const App = () => {
 
   const [showModal, setShowModal] = useState(true);
 
-  const [cleanBoard, setCleanBoard] = useState(false);
-
   const [winCombination, setWinCombination] = useState(null);
+  
+  const [draws, setDraws] = useState(false);
 
   useEffect(() => {
-    setCleanBoard(false);
     const isPlayer1Winner = checkWinner(player1.currentSteps);
     const isPlayer2Winner = checkWinner(player2.currentSteps);
 
     if (!isPlayer1Winner && player1.currentSteps.length === 5) {
       setPlayer1((prevState) => ({ ...prevState, currentSteps: [] }));
       setPlayer2((prevState) => ({ ...prevState, currentSteps: [] }));
-      alert('Draws! Try once more.');
-      setCleanBoard(true);
+      setDraws(true);
       return;
     }
 
@@ -42,8 +40,6 @@ const App = () => {
       setPlayer1((prevState) => ({ ...prevState, currentSteps: [], wins: prevState.wins + 1 }));
       setPlayer2((prevState) => ({ ...prevState, currentSteps: [] }));
       setWinCombination(isPlayer1Winner);
-      alert(`${player1.name} wins!`);
-      setCleanBoard(true);
       return;
     }
     
@@ -51,11 +47,11 @@ const App = () => {
       setPlayer2((prevState) => ({ ...prevState, currentSteps: [], wins: prevState.wins + 1 }));
       setPlayer1((prevState) => ({ ...prevState, currentSteps: [] }));
       setWinCombination(isPlayer2Winner);
-      alert(`${player2.name} wins!`);
-      setCleanBoard(true);
+      return;
     }
 
-    // setWinCombination(null);
+    setDraws(false);
+    setWinCombination(null);
   }, [player1.currentSteps, player2.currentSteps, player1.name, player2.name]);
 
   const getNamesHandler = (e) => {
@@ -92,8 +88,8 @@ const App = () => {
     <Container>
       <Board
         savePlayerSteps={ savePlayerSteps }
-        cleanBoard={cleanBoard}
-        winCombination={ winCombination }
+        winCombination={winCombination}
+        draws={ draws }
       />
       <ScoreTable 
         player1={ player1 }

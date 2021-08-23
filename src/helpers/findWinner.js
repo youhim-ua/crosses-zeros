@@ -13,21 +13,20 @@ const checkWinner = (playerSteps) => {
   if (playerSteps.length > 2) {
     for (let i = 0; i < winCombination.length; i++) {
       const result = [];
-      const winIndexes = [];
+      let winIndexes = null;
       for (let j = 0; j < playerSteps.length; j++) {
         const checkNumber = winCombination[i].includes(+playerSteps[j]);
         if (checkNumber) {
           result.push(true);
-          winIndexes.push(winCombination[i]);
+          winIndexes = winCombination[i];
         } else {
           result.push(false);
         };
       }
       
       const isWin = result.filter(item => item === true).length === 3;
-      const combination = winIndexes.slice(0, 1);
-      console.log(...combination);
-      if (isWin) return combination;
+      
+      if (isWin) return winIndexes;
     }
   }
 }

@@ -47,6 +47,33 @@
   left: 398px;
 }
 
+@keyframes rise {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes rise2 {
+  from {
+    transform: rotate(45deg) scale(0);
+  }
+  to {
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+@keyframes rise3 {
+  from {
+    transform: rotate(-45deg) scale(0);
+  }
+  to {
+    transform: rotate(-45deg) scale(1);
+  }
+}
+
 .line1,
 .line2,
 .line3,
@@ -68,6 +95,9 @@
   left: 5%;
   width: 90%;
   height: 20px;
+  transform-origin: left;
+
+  animation: rise 0.4s ease-in forwards;
 }
 
 .line1 {
@@ -88,6 +118,9 @@
   top: 5%;
   height: 90%;
   width: 20px;
+  transform-origin: top;
+
+  animation: rise 0.4s ease-in forwards;
 }
 
 .line4 {
@@ -107,8 +140,9 @@
   right: 5%;
   height: 125%;
   width: 20px;
-  transform: rotate(45deg);
   transform-origin: top right;
+
+  animation: rise2 0.4s ease-in forwards;
 }
 
 .line8 {
@@ -116,6 +150,7 @@
   left: 5%;
   height: 125%;
   width: 20px;
-  transform: rotate(-45deg);
   transform-origin: top left;
+
+  animation: rise3 0.4s ease-in forwards;
 }

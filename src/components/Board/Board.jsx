@@ -4,17 +4,32 @@ import underliningWinComb from '../../helpers/underliningWinComb';
 import './styles.css';
 
 
-const Board = ({ savePlayerSteps, cleanBoard, winCombination }) => {
+const Board = ({ savePlayerSteps, winCombination, draws }) => {
   const [step, setStep] = useState(true);
+
+  const [cleanBoard, setCleanBoard] = useState(false);
 
   useEffect(() => {
     setStep(true);
-  }, [cleanBoard])
+    setCleanBoard(false);
+    
+    if (winCombination) {
+      alert('Round! Great win!');
+      setCleanBoard(true);
+    }
+    
+    if (draws) {
+      alert('Draws! Try once more.');
+      setCleanBoard(true);
+    }
+  }, [winCombination, draws])
 
   const changeStep = (id) => {
     setStep((prevState) => !prevState);
     savePlayerSteps(id, step);
   }
+
+  const cellsIds = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   return (
     <div className='board'>
@@ -25,60 +40,15 @@ const Board = ({ savePlayerSteps, cleanBoard, winCombination }) => {
 
       {winCombination && underliningWinComb(winCombination)}
 
-      <Cell
-        changeStep={ changeStep }
-        step={step}
-        cleanBoard={ cleanBoard }
-        id='1'
-      />
-      <Cell
-        changeStep={ changeStep }
-        step={step}
-        cleanBoard={ cleanBoard }
-        id='2'
-      />
-      <Cell
-        changeStep={ changeStep }
-        step={step}
-        cleanBoard={ cleanBoard }
-        id='3'
-      />
-      <Cell
-        changeStep={ changeStep }
-        step={step}
-        cleanBoard={ cleanBoard }
-        id='4'
-      />
-      <Cell
-        changeStep={ changeStep }
-        step={step}
-        cleanBoard={ cleanBoard }
-        id='5'
-      />
-      <Cell
-        changeStep={ changeStep }
-        step={step}
-        cleanBoard={ cleanBoard }
-        id='6'
-      />
-      <Cell
-        changeStep={ changeStep }
-        step={step}
-        cleanBoard={ cleanBoard }
-        id='7'
-      />
-      <Cell
-        changeStep={ changeStep }
-        step={step}
-        cleanBoard={ cleanBoard }
-        id='8'
-      />
-      <Cell
-        changeStep={ changeStep }
-        step={step}
-        cleanBoard={ cleanBoard }
-        id='9'
-      />
+      {cellsIds.map(id => (
+        <Cell
+          changeStep={ changeStep }
+          step={step}
+          cleanBoard={ cleanBoard }
+          id={id}
+          key={id}
+        />
+      ))}
     </div>
   );
 }
